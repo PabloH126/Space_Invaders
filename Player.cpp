@@ -3,7 +3,6 @@
 #include "Bullet.h"
 #include <iostream>
 #include <vector>
-#include <mutex>
 
 using namespace std;
 
@@ -42,10 +41,7 @@ void Player::Draw() {
 
 void Player::Shoot() {
     COORD coords = GetCoords();
-    mutex bulletMutex;
-    bulletMutex.lock();
     bulletsFired.emplace_back(coords, false);
-    bulletMutex.unlock();
 }
 
 void Player::Move() {};
