@@ -127,27 +127,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Canva.cpp" />
-    <ClCompile Include="Cover.cpp" />
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Invader.cpp" />
-    <ClCompile Include="InvaderManager.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Space_Invaders.cpp" />
+    <ClCompile Include="src\Bullet.cpp" />
+    <ClCompile Include="src\Canva.cpp" />
+    <ClCompile Include="src\Cover.cpp" />
+    <ClCompile Include="src\CoversManager.cpp" />
+    <ClCompile Include="src\Entity.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\InputManager.cpp" />
+    <ClCompile Include="src\Invader.cpp" />
+    <ClCompile Include="src\InvaderManager.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Space_Invaders.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Canva.h" />
-    <ClInclude Include="Cover.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Invader.h" />
-    <ClInclude Include="InvaderManager.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="libraries\Bullet.h" />
+    <ClInclude Include="libraries\Canva.h" />
+    <ClInclude Include="libraries\Cover.h" />
+    <ClInclude Include="libraries\CoversManager.h" />
+    <ClInclude Include="libraries\Entity.h" />
+    <ClInclude Include="libraries\Game.h" />
+    <ClInclude Include="libraries\InputManager.h" />
+    <ClInclude Include="libraries\Invader.h" />
+    <ClInclude Include="libraries\InvaderManager.h" />
+    <ClInclude Include="libraries\Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

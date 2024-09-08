@@ -1,5 +1,5 @@
-#include "Entity.h"
-#include "Canva.h"
+#include "../libraries/Entity.h"
+#include "../libraries/Canva.h"
 #include <iostream>
 using namespace std;
 

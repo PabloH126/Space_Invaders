@@ -1,5 +1,5 @@
-#include "Cover.h"
-#include "Canva.h"
+#include "../libraries/Cover.h"
+#include "../libraries/Canva.h"
 #include <iostream>
 using namespace std;
 

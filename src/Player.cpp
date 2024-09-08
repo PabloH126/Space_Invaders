@@ -1,6 +1,6 @@
-#include "Player.h"
-#include "Canva.h"
-#include "Bullet.h"
+#include "../libraries/Player.h"
+#include "../libraries/Canva.h"
+#include "../libraries/Bullet.h"
 #include <iostream>
 #include <vector>
 

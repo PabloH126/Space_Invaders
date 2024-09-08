@@ -1,5 +1,5 @@
-#include "Invader.h"
-#include "Canva.h"
+#include "../libraries/Invader.h"
+#include "../libraries/Canva.h"
 #include <iostream>
 using namespace std;
 

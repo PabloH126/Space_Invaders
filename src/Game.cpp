@@ -1,8 +1,8 @@
-#include "Game.h"
-#include "InputManager.h"
-#include "InvaderManager.h"
-#include "Canva.h"
-#include "Player.h"
+#include "../libraries/Game.h"
+#include "../libraries/InputManager.h"
+#include "../libraries/InvaderManager.h"
+#include "../libraries/Canva.h"
+#include "../libraries/Player.h"
 #include <thread>
 
 using namespace std;

@@ -1,5 +1,5 @@
-#include "Bullet.h"
-#include "Canva.h"
+#include "../libraries/Bullet.h"
+#include "../libraries/Canva.h"
 #include <iostream>
 #include <thread>
 #include <mutex>

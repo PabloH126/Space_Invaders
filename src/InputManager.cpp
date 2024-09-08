@@ -1,12 +1,12 @@
-#include "InputManager.h"
+#include "../libraries/InputManager.h"
 #include <iostream>
 #include <conio.h>
-#include "Player.h"
+#include "../libraries/Player.h"
 
 using namespace std;
 
 void InputManager::HandleInput(Player& player) {
-	if (_kbhit) {
+	if (_kbhit()) {
 		char opt = _getch();
 		opt = toupper(opt);
 
