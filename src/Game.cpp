@@ -16,7 +16,7 @@ Game::Game() {
 void Game::Run() {
 	while (player.GetHealth() != 0) {
 		inputManager.HandleInput(player);
-		player.MoveBullets();
+		player.MoveBullets(invaderManager.GetInvaders());
 		Sleep(30);
 	}
 	End();

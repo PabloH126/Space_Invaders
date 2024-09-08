@@ -1,6 +1,7 @@
 #include "../libraries/Player.h"
 #include "../libraries/Canva.h"
 #include "../libraries/Bullet.h"
+#include "../libraries/Invader.h"
 #include <iostream>
 #include <vector>
 
@@ -41,12 +42,24 @@ void Player::Draw() {
 
 void Player::Shoot() {
     COORD coords = GetCoords();
-    bulletsFired.push_back(new Bullet(coords, false));
+    bool isBulletFound = false;
+    for (it = bulletsFired.begin(); it != bulletsFired.end(); it++) {
+        if ((*it)->bulletDestroyed) {
+            (*it)->bulletDestroyed = false;
+            (*it)->Spawn(coords);
+            isBulletFound = true;
+            break;
+        }
+    }
+    if (!isBulletFound) {
+        bulletsFired.push_back(new Bullet(coords, false));
+    }
 }
 
-void Player::MoveBullets() {
+void Player::MoveBullets(vector<Invader*> invaders) {
     for (it = bulletsFired.begin(); it != bulletsFired.end(); it++) {
         (*it)->Move();
+        (*it)->Impact(invaders);
     }
 }
 

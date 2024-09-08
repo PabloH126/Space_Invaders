@@ -7,8 +7,10 @@ private:
 	void UpdatePos(int x, int y);
 public:
 	Invader(int typeInvader, COORD initCoords);
-	void Draw() override;
 
+	bool isDestroyed;
+
+	void Draw() override;
 	void Move() override;
 	void Move(char optMove) override;
 };

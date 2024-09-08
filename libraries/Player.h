@@ -1,7 +1,8 @@
 #pragma once
 #include "Entity.h"
 #include "Bullet.h"
-#include <list>
+#include "Invader.h"
+#include <vector>
 #include <iostream>
 
 using namespace std;
@@ -9,8 +10,8 @@ using namespace std;
 class Player : public Entity
 {
 private:
-	list<Bullet*> bulletsFired;
-	list<Bullet*>::iterator it;
+	vector<Bullet*> bulletsFired;
+	vector<Bullet*>::iterator it;
 public:
 	
 	Player();
@@ -18,6 +19,6 @@ public:
 	void Draw() override;
 	void Move();
 	void Shoot();
-	void MoveBullets();
+	void MoveBullets(vector<Invader*> invaders);
 };
 

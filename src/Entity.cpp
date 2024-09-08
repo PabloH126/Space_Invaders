@@ -32,6 +32,8 @@ void Entity::Death(int x, int y) {
     cout << "- -O- -" << endl;
     Canva::GoToXY(x, y + 3, coord);
     cout << ",'/|\\'." << endl;
+    Sleep(200);
+    Erase();
 }
 
 void Entity::Erase() {

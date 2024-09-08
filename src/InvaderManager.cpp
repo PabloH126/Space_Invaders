@@ -53,3 +53,11 @@ void InvaderManager::DrawInvaders() {
 		}
 	}
 }
+
+vector<Invader*> InvaderManager::GetInvaders() {
+	vector<Invader*> invadersToSend;
+	for (Invader& invader : invaders) {
+		invadersToSend.push_back(&invader);
+	}
+	return invadersToSend;
+}
