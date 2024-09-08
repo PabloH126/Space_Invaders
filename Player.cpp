@@ -41,7 +41,13 @@ void Player::Draw() {
 
 void Player::Shoot() {
     COORD coords = GetCoords();
-    bulletsFired.emplace_back(coords, false);
+    bulletsFired.push_back(new Bullet(coords, false));
+}
+
+void Player::MoveBullets() {
+    for (it = bulletsFired.begin(); it != bulletsFired.end(); it++) {
+        (*it)->Move();
+    }
 }
 
 void Player::Move() {};

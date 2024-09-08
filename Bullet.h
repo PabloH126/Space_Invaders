@@ -2,6 +2,8 @@
 #include <Windows.h>
 #include <iostream>
 
+using namespace std;
+
 class Bullet
 {
 private:
@@ -14,7 +16,6 @@ private:
 	void Destroy();
 public:
 	Bullet(COORD entityCoords, bool isInvader);
-	~Bullet();
 	void Move();
 };
 

@@ -130,7 +130,6 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Canva.cpp" />
     <ClCompile Include="Cover.cpp" />
-    <ClCompile Include="CoversManager.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -143,7 +142,6 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Canva.h" />
     <ClInclude Include="Cover.h" />
-    <ClInclude Include="CoversManager.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputManager.h" />

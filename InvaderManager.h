@@ -13,6 +13,10 @@ private:
 	void MoveInvaders(int move);
 public:
 	InvaderManager();
+
+	bool threadStopped;
+
 	void UpdateInvaders();
+	void DrawInvaders();
 };
 

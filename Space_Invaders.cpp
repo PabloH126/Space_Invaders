@@ -1,24 +1,14 @@
 // Space_Invaders.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
 //
 
-#include <iostream>
-#include <Windows.h>
-#include <conio.h>
-#include "Canva.h"
-#include "Invader.h"
-#include "Cover.h"
-#include "Player.h"
-#include "InvaderManager.h"
+#include "Game.h"
 #include <thread>
 #include <mutex>
-#include "CoversManager.h"
-#include "InputManager.h"
 
 using namespace std;
 
 mutex consoleMutex;
 
-float frameTime(1000 / 60);
 void updateThreadInvaders(InvaderManager& iM) {
     while (true) {
         iM.UpdateInvaders();
@@ -30,21 +20,8 @@ void updateThreadInvaders(InvaderManager& iM) {
 
 int main()
 {
-    Canva canvas;
-    
-    InvaderManager invaderManager;
-    Player player;
-    CoversManager coverManager;
-    InputManager inputManager;
-    
-    canvas.DrawCanva();
-    thread invadersThread(updateThreadInvaders, ref(invaderManager));
-    
-    while (true) {
-        inputManager.HandleInput(player);
-        Sleep(frameTime);
-    }
-    cout << endl << endl << endl;
+    Game game;
+    game.Run();
     system("pause");
 }
 
