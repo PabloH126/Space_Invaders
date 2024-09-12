@@ -3,6 +3,7 @@
 #include "Bullet.h"
 #include "Player.h"
 #include "Entity.h"
+#include "Canva.h"
 
 using namespace std;
 

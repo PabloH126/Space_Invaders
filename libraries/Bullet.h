@@ -16,7 +16,6 @@ class Bullet
 {
 private:
 	COORD bulletCoords = { 0, 0 };
-	COORD initCoords = { 0, 0 };
 	int bulletDamage;
 	void Draw();
 	void Erase();

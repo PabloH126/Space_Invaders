@@ -15,25 +15,27 @@ Bullet::Bullet(COORD entityCoords, bool typeInvader) {
 }
 
 void Bullet::Move() {
-	if (isInvader && bulletCoords.Y < 37) { 
-		Erase();
-		bulletCoords.Y++;
-		Draw();
-	}
-	else if (!isInvader && bulletCoords.Y > 4) { 
-		Erase();
-		bulletCoords.Y--; 
-		Draw();
-	}
-	else {
-		bulletDestroyed = true;
-		Erase();
+	if (!bulletDestroyed) {
+		if (isInvader && bulletCoords.Y < 37) {
+			Erase();
+			bulletCoords.Y++;
+			Draw();
+		}
+		else if (!isInvader && bulletCoords.Y > 4) {
+			Erase();
+			bulletCoords.Y--;
+			Draw();
+		}
+		else {
+			bulletDestroyed = true;
+			Erase();
+		}
 	}
 }
 
 void Bullet::Draw() {
 	Canva::GoToXY(bulletCoords.X, bulletCoords.Y, bulletCoords);
-	cout << bulletTrue;
+	cout << bulletTrue << bulletDamage;
 }
 
 void Bullet::Erase() {
@@ -42,7 +44,8 @@ void Bullet::Erase() {
 }
 
 void Bullet::Reset() {
-	Canva::GoToXY(initCoords.X, initCoords.Y, bulletCoords);
+	Erase();
+	Canva::GoToXY(0, 0, bulletCoords);
 	cout << bulletFalse;
 }
 
@@ -50,7 +53,6 @@ void Bullet::Spawn(COORD entityCoords, bool isNewInvader) {
 	int x = entityCoords.X + 3, y;
 	isInvader = isNewInvader;
 	isInvader ? y = entityCoords.Y + 4 : y = entityCoords.Y - 1;
-	initCoords = { (short)x, (short)y };
 
 	Canva::GoToXY(x, y, bulletCoords);
 	Draw();
@@ -58,13 +60,14 @@ void Bullet::Spawn(COORD entityCoords, bool isNewInvader) {
 
 void Bullet::Impact(Entity &entity) {
 	COORD entityCoords = entity.GetCoords();
+	int newEntityHealth = entity.GetHealth() - bulletDamage;
 	if (CheckCoords(entityCoords) && !entity.isDestroyed) {
-		if (entity.GetHealth() == 0) {
+		if (newEntityHealth == 0) {
 			entity.isDestroyed = true;
 			entity.Death(entityCoords.X, entityCoords.Y);
 		}
 		else {
-			entity.SetHealth(entity.GetHealth() - bulletDamage);
+			entity.SetHealth(newEntityHealth);
 		}
 		bulletDestroyed = true;
 		Reset();
