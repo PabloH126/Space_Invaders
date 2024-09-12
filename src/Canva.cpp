@@ -7,6 +7,7 @@ using namespace std;
 Canva::Canva() {
     width = 100;
     height = 34;
+    DrawCanva();
 }
 
 void Canva::DrawCorners(int x, int y, int caracter) {

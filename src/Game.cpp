@@ -1,21 +1,15 @@
 #include "../libraries/Game.h"
-#include "../libraries/InputManager.h"
-#include "../libraries/InvaderManager.h"
-#include "../libraries/Canva.h"
-#include "../libraries/Player.h"
 #include <thread>
 
 using namespace std;
 
-Game::Game() {
-	canva.DrawCanva();
-	invaderManager.DrawInvaders();
+Game::Game(): invaderManager(&bulletManager), inputManager(&bulletManager, &player) {
 	thread invadersManagerThread(&InvaderManager::UpdateInvaders, &invaderManager);
 	invadersManagerThread.detach();
 }
 void Game::Run() {
-	while (player.GetHealth() != 0) {
-		inputManager.HandleInput(player, bulletManager);
+	while (!player.isDestroyed) {
+		inputManager.HandleInput();
 		bulletManager.MoveBullets(invaderManager.GetInvaders(), player);
 		Sleep(30);
 	}
@@ -25,3 +19,6 @@ void Game::Run() {
 void Game::End() {
 	invaderManager.threadStopped = true;
 }
+
+
+

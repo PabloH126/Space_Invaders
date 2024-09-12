@@ -16,7 +16,7 @@ Bullet::Bullet(COORD entityCoords, bool typeInvader) {
 
 void Bullet::Move() {
 	if (!bulletDestroyed) {
-		if (isInvader && bulletCoords.Y < 37) {
+		if (isInvader && bulletCoords.Y < 36) {
 			Erase();
 			bulletCoords.Y++;
 			Draw();
@@ -35,7 +35,7 @@ void Bullet::Move() {
 
 void Bullet::Draw() {
 	Canva::GoToXY(bulletCoords.X, bulletCoords.Y, bulletCoords);
-	cout << bulletTrue << bulletDamage;
+	cout << bulletTrue;
 }
 
 void Bullet::Erase() {
@@ -62,13 +62,14 @@ void Bullet::Impact(Entity &entity) {
 	COORD entityCoords = entity.GetCoords();
 	int newEntityHealth = entity.GetHealth() - bulletDamage;
 	if (CheckCoords(entityCoords) && !entity.isDestroyed) {
+		entity.SetHealth(newEntityHealth);
 		if (newEntityHealth == 0) {
 			entity.isDestroyed = true;
 			entity.Death(entityCoords.X, entityCoords.Y);
 		}
-		else {
-			entity.SetHealth(newEntityHealth);
-		}
+
+		COORD coords = { 0, 0 };
+		Canva::GoToXY(1, 2, coords);
 		bulletDestroyed = true;
 		Reset();
 	}

@@ -4,7 +4,11 @@
 
 class InputManager
 {
+private:
+	BulletManager* bulletManager;
+	Player* player;
 public:
-	void HandleInput(Player &player, BulletManager &bulletManager);
+	InputManager(BulletManager* gameBulletManager, Player* gamePlayer);
+	void HandleInput();
 };
 

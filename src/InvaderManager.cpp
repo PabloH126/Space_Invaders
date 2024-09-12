@@ -5,10 +5,13 @@
 
 using namespace std;
 
-InvaderManager::InvaderManager() {
+InvaderManager::InvaderManager(BulletManager* gameBulletManager) {
 	step = 0;
 	border = false;
 	threadStopped = false;
+	bulletManager = gameBulletManager;
+
+	DrawInvaders();
 }
 
 void InvaderManager::UpdateInvaders() {
@@ -35,6 +38,7 @@ void InvaderManager::UpdateInvaders() {
 			MoveInvaders(3);
 			step--;
 		}
+		InvaderShoot();
 		Sleep(1000);
 	}
 }
@@ -60,4 +64,15 @@ vector<Invader*> InvaderManager::GetInvaders() {
 		invadersToSend.push_back(&invader);
 	}
 	return invadersToSend;
+}
+
+void InvaderManager::InvaderShoot() {
+	int invaderIndex = 0;
+	Invader* invaderShooting = nullptr;
+	do {
+		invaderIndex = rand() % invaders.size();
+		invaderShooting = &invaders[invaderIndex];
+	} while (invaderShooting->isDestroyed);
+
+	bulletManager->Shoot(true, *invaderShooting);
 }

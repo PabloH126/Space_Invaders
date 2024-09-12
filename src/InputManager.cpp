@@ -4,16 +4,21 @@
 
 using namespace std;
 
-void InputManager::HandleInput(Player &player, BulletManager &bulletManager) {
+InputManager::InputManager(BulletManager* gameBulletManager, Player* gamePlayer) {
+	bulletManager = gameBulletManager;
+	player = gamePlayer;
+}
+
+void InputManager::HandleInput() {
 	if (_kbhit()) {
 		char opt = _getch();
 		opt = toupper(opt);
 
 		if (opt == 32) {
-			bulletManager.Shoot(false, player);
+			bulletManager->Shoot(false, *player);
 		}
 		else if (opt == 65 || opt == 68){
-			player.Move(opt);
+			player->Move(opt);
 		}
 	}
 }
