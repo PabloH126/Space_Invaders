@@ -1,8 +1,14 @@
 #pragma once
 #include <Windows.h>
 #include <iostream>
-#include "../libraries/Invader.h"
 #include <vector>
+#include <thread>
+#include <mutex>
+
+#include "Invader.h"
+#include "Player.h"
+#include "Canva.h"
+#include "Entity.h"
 
 using namespace std;
 
@@ -12,7 +18,6 @@ private:
 	COORD bulletCoords = { 0, 0 };
 	COORD initCoords = { 0, 0 };
 	int bulletDamage;
-	bool isInvader;
 	void Draw();
 	void Erase();
 	void Reset();
@@ -20,9 +25,11 @@ private:
 public:
 	Bullet(COORD entityCoords, bool isInvader);
 
+	bool isInvader;
 	bool bulletDestroyed;
+
 	void Move();
-	void Spawn(COORD entityCoord);
-	void Impact(vector<Invader*> invaders);
+	void Spawn(COORD entityCoord, bool isNewInvader);
+	void Impact(Entity& entity);
 };
 

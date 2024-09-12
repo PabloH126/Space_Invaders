@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\BulletManager.cpp" />
     <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\Canva.cpp" />
     <ClCompile Include="src\Cover.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="src\Space_Invaders.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="libraries\BulletManager.h" />
     <ClInclude Include="libraries\Bullet.h" />
     <ClInclude Include="libraries\Canva.h" />
     <ClInclude Include="libraries\Cover.h" />

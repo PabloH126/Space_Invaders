@@ -1,10 +1,4 @@
 #include "../libraries/Bullet.h"
-#include "../libraries/Canva.h"
-#include "../libraries/Invader.h"
-#include <iostream>
-#include <thread>
-#include <mutex>
-#include <vector>
 
 using namespace std;
 
@@ -17,7 +11,7 @@ Bullet::Bullet(COORD entityCoords, bool typeInvader) {
 	bulletDamage = 50;
 	bulletDestroyed = false;
 
-	Spawn(entityCoords);
+	Spawn(entityCoords, typeInvader);
 }
 
 void Bullet::Move() {
@@ -52,8 +46,9 @@ void Bullet::Reset() {
 	cout << bulletFalse;
 }
 
-void Bullet::Spawn(COORD entityCoords) {
+void Bullet::Spawn(COORD entityCoords, bool isNewInvader) {
 	int x = entityCoords.X + 3, y;
+	isInvader = isNewInvader;
 	isInvader ? y = entityCoords.Y + 4 : y = entityCoords.Y - 1;
 	initCoords = { (short)x, (short)y };
 
@@ -61,20 +56,26 @@ void Bullet::Spawn(COORD entityCoords) {
 	Draw();
 }
 
-void Bullet::Impact(vector<Invader*> invaders) {
-	for (Invader* invader : invaders) {
-		COORD invaderCoords = invader->GetCoords();
-		if (CheckCoords(invaderCoords) && !invader->isDestroyed) {
-			invader->isDestroyed = true;
-			invader->Death(invaderCoords.X, invaderCoords.Y);
-			Reset();
+void Bullet::Impact(Entity &entity) {
+	COORD entityCoords = entity.GetCoords();
+	if (CheckCoords(entityCoords) && !entity.isDestroyed) {
+		if (entity.GetHealth() == 0) {
+			entity.isDestroyed = true;
+			entity.Death(entityCoords.X, entityCoords.Y);
 		}
+		else {
+			entity.SetHealth(entity.GetHealth() - bulletDamage);
+		}
+		bulletDestroyed = true;
+		Reset();
 	}
 }
 
-bool Bullet::CheckCoords(COORD invaderCoords) {
-	if ((bulletCoords.X >= invaderCoords.X && bulletCoords.Y >= invaderCoords.Y) && 
-		(bulletCoords.X <= invaderCoords.X+6 && bulletCoords.Y <= invaderCoords.Y+3))
+
+
+bool Bullet::CheckCoords(COORD entityCoords) {
+	if ((bulletCoords.X >= entityCoords.X && bulletCoords.Y >= entityCoords.Y) && 
+		(bulletCoords.X <= entityCoords.X+6 && bulletCoords.Y <= entityCoords.Y+3))
 	{
 		return true;
 	}

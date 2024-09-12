@@ -9,16 +9,10 @@ using namespace std;
 
 class Player : public Entity
 {
-private:
-	vector<Bullet*> bulletsFired;
-	vector<Bullet*>::iterator it;
-public:
-	
+public:	
 	Player();
 	void Move(char input) override;
 	void Draw() override;
 	void Move();
-	void Shoot();
-	void MoveBullets(vector<Invader*> invaders);
 };
 

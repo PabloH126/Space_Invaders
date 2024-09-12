@@ -8,6 +8,8 @@ private:
 public:
     Entity();
 
+    bool isDestroyed;
+
     void SetHealth(const int& newHealth);
     int GetHealth();
     COORD GetCoords();

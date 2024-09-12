@@ -40,29 +40,6 @@ void Player::Draw() {
     Canva::GoToXY(initCoords.X, initCoords.Y, coords);
 }
 
-void Player::Shoot() {
-    COORD coords = GetCoords();
-    bool isBulletFound = false;
-    for (it = bulletsFired.begin(); it != bulletsFired.end(); it++) {
-        if ((*it)->bulletDestroyed) {
-            (*it)->bulletDestroyed = false;
-            (*it)->Spawn(coords);
-            isBulletFound = true;
-            break;
-        }
-    }
-    if (!isBulletFound) {
-        bulletsFired.push_back(new Bullet(coords, false));
-    }
-}
-
-void Player::MoveBullets(vector<Invader*> invaders) {
-    for (it = bulletsFired.begin(); it != bulletsFired.end(); it++) {
-        (*it)->Move();
-        (*it)->Impact(invaders);
-    }
-}
-
 void Player::Move() {};
 
 
