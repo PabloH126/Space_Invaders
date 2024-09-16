@@ -13,7 +13,7 @@ private:
 	vector<Bullet*> bulletsFired;
 	vector<Bullet*>::iterator it;
 public:
-	void MoveBullets(vector<Invader*> invaders, Player& player);
+	void MoveBullets(vector<Invader> &invaders, Player& player);
 	void Shoot(bool isInvader, Entity &entity);
 };
 

@@ -18,7 +18,7 @@ public:
 
 	bool threadStopped;
 
-	vector<Invader*> GetInvaders();
+	vector<Invader>& GetInvaders();
 	void UpdateInvaders();
 	void DrawInvaders();
 	void InvaderShoot();

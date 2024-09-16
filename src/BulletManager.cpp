@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void BulletManager::MoveBullets(vector<Invader*> invaders, Player& player) {
+void BulletManager::MoveBullets(vector<Invader> &invaders, Player& player) {
     for (it = bulletsFired.begin(); it != bulletsFired.end(); it++) {
         (*it)->Move();
         if ((*it)->isInvader)
@@ -10,8 +10,8 @@ void BulletManager::MoveBullets(vector<Invader*> invaders, Player& player) {
             (*it)->Impact((player));
         }
         else {
-            for (Invader* invader : invaders) {
-                (*it)->Impact(*invader);
+            for (Invader& invader : invaders) {
+                (*it)->Impact(invader);
             }
         }
     }
