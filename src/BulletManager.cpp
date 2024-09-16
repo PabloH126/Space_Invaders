@@ -7,11 +7,15 @@ void BulletManager::MoveBullets(vector<Invader> &invaders, Player& player) {
         (*it)->Move();
         if ((*it)->isInvader)
         {
-            (*it)->Impact((player));
+            if ((*it)->Impact(player) == 2) {
+                player.UpdateHealth();
+            }
         }
         else {
             for (Invader& invader : invaders) {
-                (*it)->Impact(invader);
+                if ((*it)->Impact(invader) == 1) {
+                    player.SetScore(player.GetScore() + 10);
+                }
             }
         }
     }

@@ -8,8 +8,13 @@
 using namespace std;
 
 Player::Player() {
+    score = 0;
     COORD initCoords = { 52, 32 };
     SetCoords(initCoords);
+    
+    UpdateHealth();
+    UpdateScore();
+
     Draw();
 }
 
@@ -40,6 +45,38 @@ void Player::Draw() {
     Canva::GoToXY(initCoords.X, initCoords.Y, coords);
 }
 
+int Player::GetScore() {
+    return score;
+}
+
+void Player::SetScore(int newScore) {
+    score = newScore;
+    UpdateScore();
+}
+
+void Player::UpdateHealth() {
+    int playerHealth = GetHealth();
+    COORD coords = { 0, 0 };
+    Canva::GoToXY(60, 2, coords);
+    char heart = 3;
+
+    switch (playerHealth) {
+    case 99: cout << "Health: " << char(158) << char(158) << char(158);
+        break;
+    case 66: cout << "Health: " << char(158) << char(158) << " ";
+        break;
+    case 33: cout << "Health: " << char(158) << " " << " ";
+        break;
+    case 0: cout << "Health: " << " ";
+        break;
+    }
+}
+
+void Player::UpdateScore() {
+    COORD coords = { 0, 0 };
+    Canva::GoToXY(98, 2, coords);
+    cout << "Score: " << score;
+}
 void Player::Move() {};
 
 

@@ -4,7 +4,8 @@
 using namespace std;
 
 Entity::Entity() {
-    health = 100;
+    health = 99;
+    isDestroyed = false;
 }
 
 void Entity::SetHealth(const int& newHealth) {
@@ -25,15 +26,15 @@ void Entity::SetCoords(COORD newCoords) {
 
 void Entity::Death(int x, int y) {
     Canva::GoToXY(x, y, coord);
-    cout << "'.\\|/.'" << endl;
+    cout << "'.\|/.'" << endl;
     Canva::GoToXY(x, y + 1, coord);
-    cout << " (\\ /) " << endl;
+    cout << " (\ /) " << endl;
     Canva::GoToXY(x, y + 2, coord);
     cout << "- -O- -" << endl;
     Canva::GoToXY(x, y + 3, coord);
-    cout << ",'/|\\'." << endl;
-    Sleep(200);
-    Erase();
+    cout << ",'/|\'." << endl;
+    Sleep(300);
+    EraseDeath(x, y);
 }
 
 void Entity::Erase() {
@@ -48,4 +49,16 @@ void Entity::Erase() {
     Canva::GoToXY(coord.X, coord.Y+1, coord);
     cout << "       ";
     Canva::GoToXY(initX, initY, coord);
+}
+
+void Entity::EraseDeath(int x, int y) {
+    COORD coords = { 0, 0 };
+    Canva::GoToXY(x, y, coords);
+    cout << "       ";
+    Canva::GoToXY(x, y + 1, coords);
+    cout << "       ";
+    Canva::GoToXY(x, y + 2, coords);
+    cout << "       ";
+    Canva::GoToXY(x, y + 3, coords);
+    cout << "       ";
 }

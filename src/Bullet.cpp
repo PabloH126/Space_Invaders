@@ -8,7 +8,7 @@ const char bulletMovement = char(32);
 
 Bullet::Bullet(COORD entityCoords, bool typeInvader) {
 	isInvader = typeInvader;
-	bulletDamage = 50;
+	bulletDamage = 33;
 	bulletDestroyed = false;
 
 	Spawn(entityCoords, typeInvader);
@@ -58,7 +58,7 @@ void Bullet::Spawn(COORD entityCoords, bool isNewInvader) {
 	Draw();
 }
 
-void Bullet::Impact(Entity &entity) {
+int Bullet::Impact(Entity &entity) {
 	COORD entityCoords = entity.GetCoords();
 	int newEntityHealth = entity.GetHealth() - bulletDamage;
 	if (CheckCoords(entityCoords) && !entity.isDestroyed) {
@@ -66,13 +66,16 @@ void Bullet::Impact(Entity &entity) {
 		if (newEntityHealth == 0) {
 			entity.isDestroyed = true;
 			entity.Death(entityCoords.X, entityCoords.Y);
+			return 1;
 		}
 
 		COORD coords = { 0, 0 };
 		Canva::GoToXY(1, 2, coords);
 		bulletDestroyed = true;
 		Reset();
+		return 2;
 	}
+	return 3;
 }
 
 

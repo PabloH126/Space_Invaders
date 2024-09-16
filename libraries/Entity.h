@@ -16,6 +16,7 @@ public:
     void SetCoords(COORD newCoords);
     void Death(int x, int y);
     void Erase();
+    void EraseDeath(int x, int y);
 
     virtual void Move() = 0;
     virtual void Move(char input) = 0;

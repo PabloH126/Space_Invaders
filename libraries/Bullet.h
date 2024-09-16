@@ -29,6 +29,6 @@ public:
 
 	void Move();
 	void Spawn(COORD entityCoord, bool isNewInvader);
-	void Impact(Entity& entity);
+	int Impact(Entity& entity);
 };
 
