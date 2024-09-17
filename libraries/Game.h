@@ -15,7 +15,7 @@ private:
 	Player player;
 public:
 	Game();
-	void Run();
+	int Run();
 	void End();
 };
 
