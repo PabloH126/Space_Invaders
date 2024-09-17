@@ -72,12 +72,8 @@ void InvaderManager::UpdateInvaders() {
 				step++;
 			}
 		}
-
-		COORD coords = { 0, 0 };
-		Canva::GoToXY(0, 0, coords);
-		cout << row;
-		//InvaderShoot();
-		Sleep(100);
+		InvaderShoot();
+		Sleep(1000);
 	}
 }
 
