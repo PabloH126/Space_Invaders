@@ -56,6 +56,8 @@ void Invader::Move(char optMove) {
         break;
     case 3: UpdatePos(coords.X - 1, coords.Y);
         break;
+    case 4: UpdatePos(coords.X, coords.Y - 1);
+        break;
     }
 };
 

@@ -11,7 +11,9 @@ private:
 	vector<Invader> invaders;
 	BulletManager* bulletManager;
 	int step;
-	int border;
+	int row;
+	bool border;
+	bool isReverse;
 	void MoveInvaders(int move);
 public:
 	InvaderManager(BulletManager* gameBulletManager);

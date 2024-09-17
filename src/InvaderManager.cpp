@@ -7,7 +7,9 @@ using namespace std;
 
 InvaderManager::InvaderManager(BulletManager* gameBulletManager) {
 	step = 0;
+	row = 0;
 	border = false;
+	isReverse = false;
 	threadStopped = false;
 	bulletManager = gameBulletManager;
 
@@ -16,30 +18,66 @@ InvaderManager::InvaderManager(BulletManager* gameBulletManager) {
 
 void InvaderManager::UpdateInvaders() {
 	while (!threadStopped) {
-		if (step < 10 && !border) {
-			MoveInvaders(1);
-			step++;
-		}
-		else if (step == 10 || step == 0) {
-			MoveInvaders(2);
-			if (step == 10) {
-				border = true;
-				step--;
-				MoveInvaders(3);
-			}
-			else
-			{
-				border = false;
-				step++;
+		if (!isReverse) {
+			if (step < 10 && !border) {
 				MoveInvaders(1);
+				step++;
+			}
+			else if (step == 10 || step == 0) {
+				MoveInvaders(2);
+				row++;
+				if (row == 13) {
+					isReverse = true;
+				}
+				if (step == 10) {
+					border = true;
+					step--;
+					MoveInvaders(3);
+				}
+				else {
+					border = false;
+					step++;
+					MoveInvaders(1);
+				}
+			}
+			else {
+				MoveInvaders(3);
+				step--;
 			}
 		}
 		else {
-			MoveInvaders(3);
-			step--;
+			if (step > 0 && border) {
+				MoveInvaders(3);
+				step--;
+			}
+			else if (step == 0 || step == 10) {
+				MoveInvaders(4);
+				row--;
+				if (row == 0) {
+					isReverse = false;
+				}
+				else if (step == 0) {
+					border = false;
+					step++;
+					MoveInvaders(1);
+				}
+				else {
+					border = true;
+					step--;
+					MoveInvaders(3);
+				}
+			}
+			else {
+				MoveInvaders(1);
+				step++;
+			}
 		}
-		InvaderShoot();
-		Sleep(1000);
+
+		COORD coords = { 0, 0 };
+		Canva::GoToXY(0, 0, coords);
+		cout << row;
+		//InvaderShoot();
+		Sleep(100);
 	}
 }
 
