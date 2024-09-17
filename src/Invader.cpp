@@ -8,11 +8,11 @@ Invader::Invader(int typeInvader, COORD initCoords) {
     isDestroyed = false;
     
     switch (type) {
-    case 1: SetHealth(150);
+    case 1: SetHealth(99);
         break;
-    case 2: SetHealth(100);
+    case 2: SetHealth(66);
         break;
-    case 3: SetHealth(50);
+    case 3: SetHealth(33);
         break;
     }
     SetCoords(initCoords);
@@ -55,6 +55,7 @@ void Invader::Move(char optMove) {
     case 2: UpdatePos(coords.X, coords.Y + 1);
         break;
     case 3: UpdatePos(coords.X - 1, coords.Y);
+        break;
     }
 };
 

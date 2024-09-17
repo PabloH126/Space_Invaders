@@ -60,19 +60,19 @@ void Bullet::Spawn(COORD entityCoords, bool isNewInvader) {
 
 int Bullet::Impact(Entity &entity) {
 	COORD entityCoords = entity.GetCoords();
-	int newEntityHealth = entity.GetHealth() - bulletDamage;
 	if (CheckCoords(entityCoords) && !entity.isDestroyed) {
+		int newEntityHealth = entity.GetHealth() - bulletDamage;
 		entity.SetHealth(newEntityHealth);
-		if (newEntityHealth == 0) {
-			entity.isDestroyed = true;
-			entity.Death(entityCoords.X, entityCoords.Y);
-			return 1;
-		}
 
-		COORD coords = { 0, 0 };
-		Canva::GoToXY(1, 2, coords);
 		bulletDestroyed = true;
 		Reset();
+
+		if (newEntityHealth <= 0) {
+			entity.isDestroyed = true;
+			entity.Death(entityCoords.X, entityCoords.Y);
+			
+			return 1;
+		}
 		return 2;
 	}
 	return 3;
